@@ -149,7 +149,7 @@ function callcontin(id, url, givenTopic, givenclass, givenfeature) {
         selection.append("circle")
 
             .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>min value:" + d.path[0]["__data__"].value.min)).style("top", (event.pageY - 150) + "px").style("left", (event.pageX - 150) + "px"); })
+            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>min value:" + d.path[0]["__data__"].value.min)).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
             .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); })
 
             .attr("cx", function (d) { return x(d.key) })
@@ -160,7 +160,7 @@ function callcontin(id, url, givenTopic, givenclass, givenfeature) {
         selection.append("circle")
             //selectionelement="class:"+transform(givenclass)+"\n max value:"+d.path[0]["__data__"].value.max+"\n min value:"+d.path[0]["__data__"].value.min+"\n avg value:"+d.path[0]["__data__"].value.avg
             .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>max value:" + d.path[0]["__data__"].value.max)).style("top", (event.pageY - 150) + "px").style("left", (event.pageX - 150) + "px"); })
+            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>max value:" + d.path[0]["__data__"].value.max)).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
             .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); })
 
             .attr("cx", function (d) { return x(d.key) })
@@ -170,7 +170,7 @@ function callcontin(id, url, givenTopic, givenclass, givenfeature) {
 
         selection.append("circle")
             .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>avg value:" + d.path[0]["__data__"].value.avg)).style("top", (event.pageY - 150) + "px").style("left", (event.pageX - 150) + "px"); })
+            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>avg value:" + d.path[0]["__data__"].value.avg)).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
             .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); })
 
             .attr("cx", function (d) { return x(d.key) })
