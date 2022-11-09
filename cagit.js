@@ -65,7 +65,7 @@ function scatterPlot(id, url, givenTopic, givenclass) {
         var cLass
         function transform(givcals) {
             if (givcals == "0") {
-                cLass = "BD"
+                cLass = "HC"
 
             }
             if (givcals == "1") {
@@ -73,7 +73,7 @@ function scatterPlot(id, url, givenTopic, givenclass) {
 
             }
             if (givcals == "2") {
-                cLass = "HC"
+                cLass = "BD"
 
             }
             return cLass
@@ -143,7 +143,7 @@ function scatterPlot(id, url, givenTopic, givenclass) {
         selection.append("circle")
 
             .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>min value:" + d.path[0]["__data__"].value.min)).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>min value:" + d.path[0]["__data__"].value.min)).style("top", (event.pageY - 400) + "px").style("left", (event.pageX - 450) + "px"); })
             .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); })
 
             .attr("cx", function (d) { return x(d.key) })
@@ -152,7 +152,7 @@ function scatterPlot(id, url, givenTopic, givenclass) {
             .style("fill", "blue")
         selection.append("circle")
             .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>max value:" + d.path[0]["__data__"].value.max)).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>max value:" + d.path[0]["__data__"].value.max)).style("top", (event.pageY - 400) + "px").style("left", (event.pageX - 450) + "px"); })
             .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); })
 
             .attr("cx", function (d) { return x(d.key) })
@@ -162,7 +162,7 @@ function scatterPlot(id, url, givenTopic, givenclass) {
 
         selection.append("circle")
             .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>avg value:" + d.path[0]["__data__"].value.avg)).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+            .on("mousemove", function (d) { return (tooltip2.html("class:" + transform(givenclass) + "<br>Feature:" + d.path[0]["__data__"].key + "<br>avg value:" + d.path[0]["__data__"].value.avg)).style("top", (event.pageY - 400) + "px").style("left", (event.pageX - 450) + "px"); })
             .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); })
 
             .attr("cx", function (d) { return x(d.key) })

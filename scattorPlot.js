@@ -1,6 +1,8 @@
-function scatter(color0, color1, valuesWithTopics0, valuesWithTopics1, svg, x, y, height, url) {
+function scatter(color0, color1, valuesWithTopics0, valuesWithTopics1, svg, x, y, height, url, class1, class2) {
   // var color0="#ff7400"
   // var color1="ff7400"
+
+  console.log("class1=============>", class1)
   const data0 = [];
   for (topicKey of Object.keys(valuesWithTopics0)) {
     data0.push({
@@ -10,6 +12,8 @@ function scatter(color0, color1, valuesWithTopics0, valuesWithTopics1, svg, x, y
   }
   // append the bar rectangles to the svg element
   //console.log(data0)//1. 20 ->55 55 ->90 2 115
+
+  console.log("valuesWithTopics0", valuesWithTopics0);
   svg.selectAll("rect")
 
     .data(data0)
@@ -103,77 +107,96 @@ function scatter(color0, color1, valuesWithTopics0, valuesWithTopics1, svg, x, y
 
 
   console.log(data1[0].value)
+
+  var cLass
+  function transform(givcals) {
+      if (givcals == "0") {
+          cLass = "HC"
+
+      }
+      if (givcals == "1") {
+          cLass = "SZ"
+
+      }
+      if (givcals == "2") {
+          cLass = "BD"
+
+      }
+      return cLass
+
+  }
+
   d3.select("#data0temporal")
 
-    .on("click", function () { scatterPlot(idscat, url, "temporal", 0); })
+    .on("click", function () { scatterPlot(idscat, url, "temporal", class1); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class1) + "<br>Feature:temporal" + "<br>No.of sub Features:2" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
 
 
   d3.select("#data1temporal")
 
-    .on("click", function () { scatterPlot(idscat, url, "temporal", 1); })
+    .on("click", function () { scatterPlot(idscat, url, "temporal", class2); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class2) + "<br>Feature:temporal" + "<br>No.of sub Features:2" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
   d3.select("#data0sentiment")
 
-    .on("click", function (d) { scatterPlot(idscat, url, "sentiment", 0); })
+    .on("click", function (d) { scatterPlot(idscat, url, "sentiment", class1); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class1) + "<br>Feature:sentiment" + "<br>No.of sub Features:2" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
   d3.select("#data1sentiment")
 
-    .on("click", function () { scatterPlot(idscat, url, "sentiment", 1); })
-    .on("mouseover", function (d) { d.path[0]["__data__"].value; return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("click", function () { scatterPlot(idscat, url, "sentiment", class2); })
+    .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class2) + "<br>Feature:sentiment" + "<br>No.of sub Features:2" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
 
 
   d3.select("#data0pysholingustic")
 
-    .on("click", function () { scatterPlot(idscat, url, "pysholingustic", 0); })
+    .on("click", function () { scatterPlot(idscat, url, "pysholingustic", class1); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class1) + "<br>Feature:pysholingustic" + "<br>No.of sub Features:9" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
   d3.select("#data1pysholingustic")
-    .on("click", function () { scatterPlot(idscat, url, "pysholingustic", 1); })
+    .on("click", function () { scatterPlot(idscat, url, "pysholingustic", class2); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class2) + "<br>Feature:pysholingustic" + "<br>No.of sub Features:9" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
 
 
   d3.select("#data0emotion")
-    .on("click", function () { scatterPlot(idscat, url, "emotion", 0); })
+    .on("click", function () { scatterPlot(idscat, url, "emotion", class1); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class1) + "<br>Feature:emotion" + "<br>No.of sub Features:9" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
   d3.select("#data1emotion")
-    .on("click", function (d) { scatterPlot(idscat, url, "emotion", 1); })
+    .on("click", function (d) { scatterPlot(idscat, url, "emotion", class2); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class2) + "<br>Feature:emotion" + "<br>No.of sub Features:9" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
 
 
   d3.select("#data0lexical")
-    .on("click", function () { scatterPlot(idscat, url, "lexical", 0); })
+    .on("click", function () { scatterPlot(idscat, url, "lexical", class1); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class1) + "<br>Feature:lexical" + "<br>No.of sub Features:9" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
   d3.select("#data1lexical")
-    .on("click", function () { scatterPlot(idscat, url, "lexical", 1); })
+    .on("click", function () { scatterPlot(idscat, url, "lexical", class2); })
     .on("mouseover", function (d) { return tooltip2.style("visibility", "visible"); })
-    .on("mousemove", function (d) { return tooltip2.html(d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
+    .on("mousemove", function (d) { return tooltip2.html("class:" + transform(class2) + "<br>Feature:lexical" + "<br>No.of sub Features:9" + "<br>AVG:"+ d.path[0]["__data__"].value).style("top", (event.pageY - 450) + "px").style("left", (event.pageX - 450) + "px"); })
     .on("mouseout", function (d) { return tooltip2.style("visibility", "hidden"); });
 
 

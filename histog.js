@@ -144,13 +144,12 @@ function gethistogram(titles, color0, color1, class1, class2, idhist, idscat, ur
     svg.append("g")
       .call(d3.axisLeft(y));
 
-    console.log(data);
+    console.log("class1>>>>>>>>>>>>", class1);
 
 
-    scatter(color0, color1, eval("valuesWithTopics" + class1), eval("valuesWithTopics" + class2), svg, x, y, height, url)
+    scatter(color0, color1, eval("valuesWithTopics" + class1), eval("valuesWithTopics" + class2), svg, x, y, height, url, class1, class2)
 
     console.log(valuesWithTopics0)
-
     console.log(valuesWithTopics1)
     console.log(valuesWithTopics2)
     console.log(eval("valuesWithTopics" + class1), class1)
