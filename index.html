@@ -1,0 +1,176 @@
+<html lang="en">
+  <head>        
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://d3js.org/d3.v6.js"></script>
+      <script src="scattorPlot.js"></script>
+      <script src="cagit.js"></script>
+      <script src="histog.js"></script> 
+      
+      <link rel="stylesheet" href="style.css">
+      
+    </head>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+      <div class="main">
+      <div class="btn-group">      
+          
+        <div>
+          <input type="radio" name="optradio" id="scince1" checked>
+          <label for="scince1">Scene 1</label>
+          <br>
+          <br>
+          <input type="radio" name="optradio" id="scince2">
+          <label for="scince2">Scene 2</label>
+        </div>
+        <hr style="border-color: rgb(138, 137, 137);">
+        <div>
+          <input type="checkbox" name="optradio2"  id="BD" checked>
+          <label for="BD">Bipolar Disorder</label>
+          <br>  
+          <br>
+          <input type="checkbox" name="optradio2"  id="SZ" checked>
+          <label for="SZ">Schizophrenic</label> 
+          <br>
+          <br>
+          <input type="checkbox" name="optradio2"  id="HC">
+          <label for="HC">Healthy Controls</label> 
+        </div>
+        <hr style="border-color: rgb(138, 137, 137);">
+        <div>
+          <input type="checkbox" name="topics"  id="temporal" checked>
+          <label for="temporal">Temporal</label>
+          <br>  
+          <br>
+          <input type="checkbox" name="topics"  id="sentiment" checked>
+          <label for="sentiment">Sentiment</label> 
+          <br>
+          <br>
+          <input type="checkbox" name="topics"  id="pysholingustic">
+          <label for="pysholingustic">Pysholingustic</label>
+          <br>
+          <br>
+          <input type="checkbox" name="topics"  id="emotion">
+          <label for="emotion">Emotion</label> 
+          <br>
+          <br>
+          <input type="checkbox" name="topics"  id="lexical">
+          <label for="lexical">Lexical</label>  
+        </div>
+        
+        <div>
+          <button class="btn btn-info" role="button" id="submit">Click</button>
+        </div>
+      </div>
+        <div id="scatterPlot" class="svk"></div>
+        <div id="histogramPlot" class="svk1"></div>
+        <div id="div_customContent"></div>
+
+      </div>
+  
+      
+
+      <script>
+                
+        var submitclick=document.getElementById("submit")
+    
+        var clickscince1=document.getElementsByName("scince1")
+        var clickscince2=document.getElementsByName("scince2")
+        
+        var clickclassesHC=document.getElementById("HC")
+        var clickclassesSZ=document.getElementById("SZ")
+        var clickclassesBD=document.getElementById("BD")
+
+      
+        submitclick.onclick=function(){
+          var classesChecked=document.querySelectorAll('input[name=optradio2]:checked')
+          var valueOfTopics=document.querySelectorAll('input[name=topics]:checked')
+
+          document.querySelector('#histogramPlot').innerHTML=""
+          document.querySelector('#scatterPlot').innerHTML=""
+          var givenurl
+          var givenTopic
+          var givenclass
+          idscat="#scatterPlot"
+          idhist="#histogramPlot"
+          console.log("hello0")
+          console.log(document.querySelector('input[name=optradio]:checked'))
+          console.log(document.querySelector('input[name=optradio2]:checked'))
+
+          var valueOfSeseion=document.querySelector('input[name=optradio]:checked')
+          var valueOfclass=document.querySelector('input[name=optradio2]:checked')
+          
+         
+          // console.log(valueOfclass)
+
+          var checkedClasses = []
+
+          for (classChecked of classesChecked) {
+            if (classChecked.id == "BD") {
+              checkedClasses.push([2,"#af6d00"])//turtle color
+
+            }
+            if (classChecked.id == "SZ") {
+              checkedClasses.push([1,"#007f00"])//green color
+
+            }
+            if (classChecked.id == "HC") {
+              checkedClasses.push([0,"#0000a8"])//blue color
+            }
+          }
+          const titles = {    
+        "temporal":["mean_time","max_time"],
+        "sentiment":["positive","negative"],
+        "pysholingustic":["WC","Clout","Tone","WPS","Dic","Analytic","Authentic","Linguistic","label"],
+        "emotion":["sadness","fear","anger","disgust","anticipation","joy","surprise","trust","label"],
+        "lexical":["i","we","you","shehe","they","ipron","det","article","label"]};
+
+        const newtitles={}
+          for(topic of valueOfTopics){
+            newtitles[topic.id]=titles[topic.id]
+            
+
+          }
+          console.log(checkedClasses)
+
+          if(valueOfSeseion["id"]=="scince1"){
+              givenurl="dosyalar/all_features_300_scene_1_complete.csv"
+              gethistogram(newtitles,checkedClasses[0][1],checkedClasses[1][1],checkedClasses[0][0],checkedClasses[1][0],idhist,idscat,givenurl)
+            
+            }
+
+          else if(valueOfSeseion["id"]=="scince2"){              
+              givenurl="dosyalar/all_features_300_scene_2_complete.csv"
+              gethistogram(newtitles,checkedClasses[0][1],checkedClasses[1][1],checkedClasses[0][0],checkedClasses[1][0],idhist,idscat,givenurl)
+          }
+        }
+
+      console.log(document.querySelectorAll('input[name=optradio2]'))
+      var classes=document.querySelectorAll('input[name=optradio2]')
+      var classesChecked=document.querySelectorAll('input[name=optradio2]:checked')
+
+      
+      console.log(classesChecked)
+
+      for(var clas of classes){
+        clas.addEventListener("change", function(e){
+          var classesChecked=document.querySelectorAll('input[name=optradio2]:checked')
+          if(classesChecked.length==3){
+            
+            e.target.checked=false;
+          }
+          else if(classesChecked.length==2){
+            document.getElementById("submit").disabled = false;
+          }
+          else if(classesChecked.length<2){
+            document.getElementById("submit").disabled = true;
+          }
+        });
+      }
+      </script>
+  </body>
+</html>
