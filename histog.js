@@ -157,11 +157,16 @@ function gethistogram(titles, color0, color1, class1, class2, idhist, idscat, ur
     console.log(eval("valuesWithTopics" + class2), class2)
 
 
-    var histogramChartData = [
-      { name: "Bipolar Disorder", color: "#af6d00" },
-      { name: "Schizophrenic", color: "green" },
-      { name: "Healthy Controls", color: "blue" },
-    ];
+    var histogramChartData = [];
+    if (class1 === 2 || class2 === 2) {
+      histogramChartData.push({ name: "Bipolar Disorder", color: "#af6d00" })
+    }
+    if (class1 === 1 || class2 === 1) {
+      histogramChartData.push({ name: "Schizophrenic", color: "green" })
+    }
+    if (class1 === 0 || class2 === 0) {
+      histogramChartData.push({ name: "Healthy Controls", color: "blue" })
+    }
 
 
     //Initialize legend
