@@ -172,12 +172,12 @@ function gethistogram(titles, color0, color1, class1, class2, idhist, idscat, ur
     //Initialize legend
     var legendItemSize = 12;
     var legendSpacing = 4;
-    var xOffset = 50;
+    var xOffset = 350;
     var yOffset = 0;
     var legend = d3
       .select('#histogramLegend')
       .append('svg')
-      .attr('style', 'position:absolute;z-index:-9999999;')
+      .attr('style', 'position:absolute;z-index:9999999;width:550;top:-50;')
       .selectAll('.legendItem')
       .data(histogramChartData);
 

@@ -182,12 +182,12 @@ function scatterPlot(id, url, givenTopic, givenclass) {
         //Initialize legend
         var legendItemSize = 12;
         var legendSpacing = 4;
-        var xOffset = 50;
+        var xOffset = 350;
         var yOffset = 0;
         var legend = d3
             .select('#legend')
             .append('svg')
-            .attr('style', 'position:absolute;z-index:-9999999;')
+            .attr('style', 'position:absolute;z-index:-999999;width:500;top:-50;')
             .selectAll('.legendItem')
             .data(chartData);
 
